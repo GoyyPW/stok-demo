@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# StokKu
 
-## Getting Started
+Dashboard stok sederhana untuk warung dan toko kecil. Pantau barang, catat stok masuk dan keluar, dan lihat otomatis mana yang hampir habis, semuanya dalam satu layar.
 
-First, run the development server:
+**Demo langsung:** https://stok-demo-nine.vercel.app/
+
+![Tampilan dashboard StokKu](./docs/dashboard.png)
+
+> Ini proyek demo untuk portofolio. Semua data barang adalah contoh dan tidak mewakili usaha tertentu.
+
+## Masalah yang diselesaikan
+
+Banyak pemilik warung dan toko masih mencatat stok di buku atau ingatan. Akibatnya barang tiba-tiba habis, atau uang tertahan di barang yang menumpuk. StokKu membuat pencatatan itu cepat dan peringatannya otomatis.
+
+## Fitur
+
+- Daftar barang dengan nama, kategori, satuan, stok, batas minimum, dan harga
+- Tambah, ubah, dan hapus barang
+- Catat **stok masuk** dan **stok keluar** lengkap dengan catatan
+- Status otomatis: **Aman**, **Menipis**, dan **Habis**
+- Ringkasan: jumlah jenis barang, jumlah stok menipis, dan nilai persediaan
+- Riwayat pergerakan stok
+- Pencarian berdasarkan nama atau kategori
+- Tampilan responsif: kartu di HP, tabel di layar lebar
+- Tombol reset untuk mengembalikan data contoh
+
+## Teknologi
+
+- [Next.js](https://nextjs.org) (App Router) dan React
+- TypeScript
+- Tailwind CSS
+- Penyimpanan data di browser (`localStorage`)
+- Dihosting di Vercel
+
+## Menjalankan di komputer sendiri
+
+Butuh Node.js versi LTS.
 
 ```bash
+git clone https://github.com/GoyyPW/stok-demo.git
+cd stok-demo
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Struktur proyek
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+stok-demo/
+├─ app/                  # halaman utama dan layout
+├─ components/           # kartu ringkasan, tabel, form, dialog, riwayat
+├─ hooks/useInventory.ts # semua logika data (baca, simpan, ubah)
+└─ lib/                  # tipe data, data contoh, format rupiah dan tanggal
+```
 
-## Learn More
+Seluruh logika data berada di satu hook, `useInventory`. Komponen tampilan hanya memanggil fungsinya.
 
-To learn more about Next.js, take a look at the following resources:
+## Catatan tentang data
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Pada demo ini data disimpan di browser, jadi hanya ada di perangkat yang dipakai dan akan hilang jika data browser dihapus. Itu sengaja, supaya demo bisa dicoba tanpa daftar akun.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Untuk penggunaan sungguhan, penyimpanan bisa diganti dengan database online (misalnya Supabase) beserta login pengguna, sehingga data aman dan bisa diakses dari beberapa perangkat. Karena logika data terpusat di `useInventory`, perubahan itu tidak menyentuh komponen tampilan.
 
-## Deploy on Vercel
+## Ingin sistem seperti ini untuk usahamu?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Saya menerima pembuatan website dan sistem kecil untuk UMKM, termasuk penyesuaian fitur, login, dan penyimpanan online.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Kontak: Email : yog2987@gmail.com atau WA : 081515679413
+- Portofolio lain: https://github.com/GoyyPW/toko-demo
